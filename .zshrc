@@ -1,20 +1,19 @@
-### dotfiles repo
-### [zsh] .zshrc
-###
-### created: 2017xxxx
-### last update: 20180712
-### Stanislaw Juliusz Grams <sjg@fmdx.pl>
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/sjg/.oh-my-zsh
-[[ $TMUX = "" ]] && export TERM="xterm-256color"
+export ZSH=$HOME/.oh-my-zsh
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="evan"
+ZSH_THEME="mh"
+
+# Autocompletion
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select
+setopt COMPLETE_ALIASES
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -105,3 +104,4 @@ PERL5LIB="/home/sjg/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/sjg/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/sjg/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/sjg/perl5"; export PERL_MM_OPT;
+
