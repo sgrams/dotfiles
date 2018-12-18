@@ -1,9 +1,6 @@
-""" dotfiles repo
-""" [vim] .vimrc
-"""
-""" created: 20161019
-""" last update: 20180712
-""" Stanislaw Juliusz Grams <sjg@fmdx.pl>
+" (c) Stanisław J. Grams
+" created:      19.10.2016
+" last update:  16.12.2018
 
 filetype plugin on
 filetype indent on
@@ -23,15 +20,38 @@ set wrap
 set modeline
 set expandtab
 
-colorscheme hemisu
-set background=dark
-
+colorscheme iceberg
 syn on
 
 set laststatus=2
 
+" VimPlugs
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'erickzanardo/vim-xclip'
 Plug 'townk/vim-autoclose'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'cocopon/iceberg.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'craigemery/vim-autotag'
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-endwise'
+Plug 'valloric/youcompleteme'
+Plug 'majutsushi/tagbar'
 call plug#end()
+
+" NERDTree settings
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"ag + Ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+"Tagbar
+nmap <F8> :TagbarToggle<CR>
+
+let g:AutoClosePreserveDotReg = 0
