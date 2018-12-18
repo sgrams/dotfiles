@@ -1,0 +1,5 @@
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+         \ $HOME/.vifm/scripts/imgt %px %py %pw %ph %c
+         \ %pc
+         \ $HOME/.vifm/scripts/imgc %px %py %pw %ph
+colorscheme ph 
