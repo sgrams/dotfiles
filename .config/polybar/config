@@ -1,0 +1,295 @@
+;
+; [polybar] config
+;
+; created: 20180731
+; updated: 20181218
+; Stanislaw Grams <sjg@fmdx.pl>
+;
+
+[colors]
+background     = #55222326
+background-alt = #abc5cca5
+
+foreground       = #cecfd1
+foreground-alt   = #bfad8a
+foreground-alert = #f20c45
+
+black      = #000000
+white      = #ffffff
+
+red        = #da0000
+green      = #00b567
+blue       = #4bbbbb
+
+yellow     = #d75f00
+
+gray       = #444444
+gray-light = #a0a0a0
+gray-dark  = #3b3c3d
+
+[bar/top]
+width = 100%
+height = 20
+radius = 0.0
+fixed-center = true
+
+wm-name = i3
+locale = pl_PL.UTF-8
+enable-ipc = true
+monitor = LVDS-1
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = ${colors.background}
+
+border-size = 0
+border-color = ${colors.background}
+
+padding-left = 3
+padding-right = 3
+
+module-margin-left = 3
+module-margin-right = 0
+
+font-0 = "Open Sans:style=Regular:size=8:antialias=true;1"
+font-1 = "FontAwesome:size=9;1.5"
+
+modules-left = i3
+modules-center = xwindow
+modules-right = imgwmon volume wlan eth date battery powermenu
+
+tray-position = right
+tray-padding = 0
+tray-transparent = true
+tray-background = ${colors.background}
+tray-detached = false
+tray-maxsize = 12
+tray-offset-y = -1
+
+wm-restack = i3
+;override-redirect = false
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+pin-workspaces = true
+strip-wsnumbers = true
+
+label-focused = %index%
+label-focused-foreground = ${colors.green}
+label-focused-background = ${colors.gray-dark}
+label-focused-padding = 1
+
+label-unfocused = %index%
+label-unfocused-padding = 1
+
+label-visible = %index%
+label-visible-padding = 1
+
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 1
+
+ws-icon-0  = "1;"
+ws-icon-1  = "2;"
+ws-icon-2  = "3;"
+ws-icon-3  = "4;"
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:80:...%
+
+[module/now_playing]
+type = custom/script
+
+exec = "python $HOME/.config/polybar/scripts/now_playing.py"
+
+tail = true
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+
+label = %output:0:50%
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+
+label-layout = %layout%
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.foreground-alt}
+
+[module/openvpn]
+type = custom/script
+exec = echo vpn
+exec-if = pgrep -x openvpn
+interval = 5
+format-prefix = " "
+format-prefix-foreground = ${colors.green}
+
+[module/volume]
+type = internal/alsa
+
+format-volume = <ramp-volume> <label-volume>
+module-margin-right = 1
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-foreground = ${colors.foreground-alt}
+
+format-volume-background = ${colors.background}
+format-volume-foreground = ${colors.foreground}
+
+label-muted = 
+label-muted-foreground = ${colors.red}
+
+[module/imgwmon]
+type = custom/script
+exec = get-imgwmon-bar
+tail = false
+interval = 300
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage_used%%
+
+[module/wlan]
+type = internal/network
+interface = wlp4s0
+interval = 1
+
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.green}
+
+label-connected = %essid%
+
+format-disconnected = 
+
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = enp3s0
+interval = 3.0
+
+format-connected-prefix = "eth "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 4
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+
+label = %date% %time%
+
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT1
+adapter = ACAD
+poll-interval = 1
+
+time-format = %H:%M:%S
+
+format-charging = <animation-charging> <label-charging>
+format-charging-foreground = ${colors.green}
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-foreground = ${colors.yellow}
+format-full = <label-full> <ramp-capacity>
+format-full-foreground = ${colors.green}
+
+bar-capacity-width = 10
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 500
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = false
+expand-left = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.red}
+label-close = 
+label-close-foreground = ${colors.red}
+label-separator = " " 
+label-separator-foreground = ${colors.foreground}
+
+menu-0-0 = lock
+menu-0-0-exec = betterlockscreen -l dimblur
+
+menu-0-1 = suspend
+menu-0-1-exec = menu-open-1
+menu-1-0 = suspend
+menu-1-0-exec = betterlockscreen -s dimblur
+
+menu-0-2 = log off
+menu-0-2-exec = menu-open-2
+menu-2-0 = log off
+menu-2-0-exec = i3-msg exit
+
+menu-0-3 = reboot
+menu-0-3-exec = menu-open-3
+menu-3-0 = reboot
+menu-3-0-exec = systemctl reboot
+
+menu-0-4 = power off
+menu-0-4-exec = menu-open-4
+menu-4-0 = power off
+menu-4-0-exec = systemctl shutdown
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over

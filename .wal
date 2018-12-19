@@ -1,0 +1,4 @@
+#!/bin/bash
+WALLPAPER=$(cat .fehbg | sed '$!d' | awk -F"['']" '{print $2}')
+wal --saturate 0.3 --backend colorthief -i $WALLPAPER >> /dev/null
+betterlockscreen -u $WALLPAPER
