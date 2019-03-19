@@ -1,6 +1,6 @@
 " (c) Stanisław J. Grams
 " created:      19.10.2016
-" last update:  16.12.2018
+" last update:  18.03.2019
 
 filetype plugin on
 filetype indent on
@@ -19,11 +19,15 @@ set nocp
 set wrap
 set modeline
 set expandtab
+set invnumber
 
 colorscheme iceberg
 syn on
 
 set laststatus=2
+
+map <F7> gg=G<C-o><C-o>
+:nmap <F9> :set invnumber<CR>
 
 " VimPlugs
 call plug#begin('~/.vim/plugged')
@@ -38,6 +42,8 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-endwise'
 Plug 'valloric/youcompleteme'
 Plug 'majutsushi/tagbar'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'nvie/vim-togglemouse'
 call plug#end()
 
 " NERDTree settings
@@ -55,3 +61,8 @@ endif
 nmap <F8> :TagbarToggle<CR>
 
 let g:AutoClosePreserveDotReg = 0
+
+"BetterWhitespace
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+let g:better_whitespace_ctermcolor='red'
