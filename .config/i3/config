@@ -1,5 +1,16 @@
+# Stanisław Grams, <sgrams@fmdx.pl>
+# created:     xx.10.2016
+# last update: 23.03.2019
+
+## Main settings
 set $mod Mod4
 
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Set colors
 set_from_resource $darkred     color1  #000000
 set_from_resource $red         color9  #000000
 set_from_resource $darkgreen   color2  #000000
@@ -14,88 +25,53 @@ set_from_resource $darkcyan    color6  #000000
 set_from_resource $cyan        color14 #000000
 set_from_resource $darkwhite   color7  #000000
 set_from_resource $white       color15 #000000
-
-# Use custom colors for black
 set $black       #282828
 set $darkblack   #1d2021
 set $transparent #FFFFFFA5
 
-# Font for title bars
-font pango:DejaVu Sans Mono 0
-
 # Border style for new windows
 new_window pixel 0
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# Start a terminal
-bindsym $mod+Return exec rofi-sensible-terminal
 
 # Kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec "rofi -opacity 80 -show drun -modi window,run,drun,ssh"
-bindsym $mod+Tab exec "rofi -opacity 80 -show window"
-
-## vifm
-bindsym $mod+e exec "urxvt -e vifm $HOME"
-
-## betterlockscreen
-bindsym $mod+l   exec "betterlockscreen -l blur"
-bindsym $mod+shift+l exec "betterlockscreen -s blur"
-
-# Change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-# Alternatively, you can use the cursor keys:
+# Move focus with cursor keys
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# Move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-# Alternatively, you can use the cursor keys:
+# Move focused window with cursor keys
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# Split in horizontal orientation
+# Splits
 bindsym $mod+h split h
-
-# Split in vertical orientation
 bindsym $mod+v split v
 
-# Enter fullscreen mode for the focused container
+# Fullscreen
 bindsym $mod+f fullscreen toggle
 
-# Change container layout (stacked, tabbed, toggle split)
+# Change container mode
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+q layout toggle split
 
-# Toggle tiling / floating
+# Toggle floating
 bindsym $mod+Shift+space floating toggle
 
-# Change focus between tiling / floating windows
+# Move focus betwen floating/stacked window
 bindsym $mod+space focus mode_toggle
 
-# Focus the parent container
+# Focus parent container
 bindsym $mod+a focus parent
 
-# Focus the child container
-#bindsym $mod+d focus child
+# Focus child container
+bindsym $mod+Shift+a focus child
 
-# Switch to workspace
+# Workspaces bindsyms
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
@@ -119,65 +95,42 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# Reload the configuration file
-bindsym $mod+Shift+c reload
 
-# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
-# Resize window (you can also use the mouse for that)
+# Window resize
 mode "resize"
 {
-        # These bindings trigger as soon as you enter the resize mode
+  # vim alike bindings
+  bindsym h resize shrink width  10 px or 10 ppt
+  bindsym k resize grow   height 10 px or 10 ppt
+  bindsym j resize shrink height 10 px or 10 ppt
+  bindsym l resize grow   width  10 px or 10 ppt
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+  # arrow bindings
+  bindsym Left  resize shrink width  10 px or 10 ppt
+  bindsym Down  resize grow   height 10 px or 10 ppt
+  bindsym Up    resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow   width  10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
-# Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pkill --signal RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pkill --signal RTMIN+1 i3blocks
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill --signal RTMIN+1 i3blocks
+# Title bar configuration
+font pango: DejaVu Sans Mono 0
+new_window pixel 0
+floating_modifier $mod
 
-# Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
-
-# Touchpad controls
-bindcode 199 exec /etc/scripts/toggletouchpad.sh # toggle touchpad
-
-# Media player controls
-
-bindcode 172 exec playerctl.sh play-pause > /dev/null && pkill --signal RTMIN+2 i3blocks
-bindcode 174 exec playerctl.sh stop > /dev/null && pkill --signal RTMIN+2 i3blocks
-bindcode 171 exec playerctl.sh next > /dev/null && pkill --signal RTMIN+2 i3blocks
-bindcode 173 exec playerctl.sh prev > /dev/null && pkill --signal RTMIN+2 i3blocks
-
-
-# i3-gaps 
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+# gaps configuration
+set $mode_gaps gaps: o/outer, i/inner
+set $mode_gaps_outer outer gaps: +|-|0 (local), shift + +|-|0 (global)
+set $mode_gaps_inner inner gaps: +|-|0 (local), shift + +|-|0 (global)
 
 bindsym $mod+Shift+g mode "$mode_gaps"
+gaps outer 2
+gaps inner 15
+smart_borders on
 
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"
@@ -210,36 +163,50 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-#bar {
-#	position top
-#	font pango:Ubuntu Regular 8
-#	i3bar_command i3bar -t
-#	status_command i3blocks
-#	colors {
-#		statusline	$white
-#		background	$transparent
-#		separator		$transparent
-#	}
-#}
 
-exec --no-startup-id $HOME/.config/i3/autostart.sh
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id $HOME/.wal
-#exec --no-startup-id conky
+## External bindsyms
+# rofi
+bindsym $mod+Return  exec "rofi-sensible-terminal"
+bindsym $mod+d       exec "rofi -opacity 80 -show drun -modi window,run,drun,ssh"
+bindsym $mod+Tab     exec "rofi -opacity 80 -show window"
+# urxvt
+bindsym $mod+e       exec "urxvt -e vifm $HOME"
+# lockscreen
+bindsym $mod+l       exec "loginctl lock-session"
+bindsym $mod+shift+l exec "systemctl suspend-then-hibernate"
+bindsym $mod+shift+h exec "systemctl hibernate"
+# audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pavolume --up
+bindsym XF86AudioLowerVolume exec --no-startup-id pavolume --down
+bindsym XF86AudioMute        exec --no-startup-id pavolume --togmute
+# screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20   # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+# redshift
+bindsym $mod+shift+n exec "pkill -USR1 redshift"
 
-# https://github.com/ValveSoftware/steam-for-linux/issues/1040
-for_window [class="^Steam$" title="^Friends$"] floating enable
-for_window [class="^Steam$" title="Steam - News"] floating enable
-for_window [class="^Steam$" title=".* - Chat"] floating enable
-for_window [class="^Steam$" title="^Settings$"] floating enable
-for_window [class="^Steam$" title=".* - event started"] floating enable
-for_window [class="^Steam$" title=".* CD key"] floating enable
-for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
-for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
-for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
-for_window [title="^Steam Keyboard$"] floating enable
+## Autostart/execs
+# basics
+exec        --no-startup-id /usr/bin/setxkbmap -layout pl   # kb layout
+exec        --no-startup-id /usr/bin/dunst                  # dunst
+exec        --no-startup-id /usr/bin/compton                # compton
+exec        --no-startup-id /usr/bin/udiskie                # udiskie
+exec        --no-startup-id /usr/bin/redshift               # redshift
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh # polybar
+exec_always --no-startup-id /usr/bin/xrandr --dpi 96        # xrandr
+exec_always --no-startup-id /usr/bin/xset b 0               # bell sound
 
-# Gaps
-gaps outer 2
-gaps inner 15
-smart_borders on
+# wal & wallpaper with feh
+exec_always --no-startup-id /usr/bin/wal --saturate 0.3 --backend colorthief -i $(cat $HOME/.fehbg | sed '$!d' | awk -F"['']" '{print $2}') >> /dev/null
+exec_always --no-startup-id $HOME/.fehbg
+# screen locking
+exec        --no-startup-id /usr/local/bin/mantablockscreen -i $(cat $HOME/.fehbg | sed '$!d' | awk -F"['']" '{print $2}')
+exec        --no-startup-id /usr/bin/xss-lock --transfer-sleep-lock -- /usr/local/bin/mantablockscreen -cc
+
+## Program specific settings
+# spotify
+for_window [class="Spotify"] move container to workspace 9
+# chromium
+for_window [class="Chromium"] move container to workspace 1
+# vs code
+for_window [class="code"] move container to workspace 3
