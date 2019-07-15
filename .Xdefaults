@@ -1,0 +1,61 @@
+!! [c] sjg 20161103 (last update 20190706)
+!! .Xdefaults
+
+URxvt.font: xft:Monaco:pixelsize=13:antialias=true:hinting=false;9x15
+Urxvt.depth: 24
+URxvt.scrollBar: false
+
+Xft.autohint: 5
+Xft.antialias: 2
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.dpi: 96
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+!!URxvt*geometry: 256x96
+
+URxvt.perl-ext-common: default,selection-to-clipboard,pasta,matcher,keyboard-select,tabbedex,autocomplete-ALL-the-things
+!URxvt.keysym.M-u:     perl:url-select:select_next
+URxvt.url-launcher: chromium
+URxvt.underlineURLs: True
+URxvt.matcher.button: 1
+URxvt.keysym.M-Escape:perl:keyboard-select:activate
+URxvt.keysym.Control-Shift-V:     perl:pasta:paste
+
+URxvt.clipboard.autocopy: true
+URxvt.iso14755: true
+URxvt.iso14755_52: false
+
+URxvt.tabbedex.autohide: true
+URxvt.tabbedex.reopen-on-close: yes
+URxvt.keysym.Control-t: perl:tabbedex:new_tab
+URxvt.keysym.Control-Tab: perl:tabbedex:next_tab
+URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
+
+!!!!!!!!!!!!!!
+URxvt.background: #002b36
+URxvt.transparent: true
+URxvt.shading: 25
+URxvt.foreground: #839496
+URxvt.vbell: True
+
+*color0: #073642
+*color8: #002b36
+
+*color1: #dc322f
+*color9: #cb4b16
+*color2: #859900
+*color10: #586e75
+*color3: #b58900
+*color11: #657b83
+*color4: #268bd2
+*color12: #839496
+*color5: #d33682
+*color13: #6c71c4
+*color6: #2aa198
+*color14: #93a1a1
+*color7: #eee8d5
+*color15: #fdf6e3
+
+Xcursor.theme: elementary

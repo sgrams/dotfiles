@@ -1,0 +1,43 @@
+/**
+ * ROFI Color theme
+ * User: sjg
+ * Copyright: Stanislaw Grams
+ */
+* {
+    background-color:      rgba(2, 27, 33, 1);
+    border-color:          White;
+    text-color:            #E8DFD6;
+    font:                  "Termsyn 9";
+}
+
+#window {
+    anchor:     north;
+    location:   north;
+    width:      100%;
+    padding:    6px;
+    height:     30px;
+    children:   [ horibox ];
+}
+
+#horibox {
+    orientation: horizontal;
+    children:   [ prompt, entry, listview ];
+}
+
+#listview {
+    layout:     horizontal;
+    spacing:    3px;
+    lines:      100;
+}
+
+#entry {
+    expand:     false;
+    width:      3em;
+}
+
+#element {
+    padding: 0px 2px;
+}
+#element selected {
+    background-color: #8A7A63;
+}
