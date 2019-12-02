@@ -4,7 +4,7 @@
  * Copyright: Stanislaw Grams
  */
 * {
-    background-color:      rgba(2, 27, 33, 1);
+    background-color:      rgba(13, 13, 13, 1);
     border-color:          White;
     text-color:            #E8DFD6;
     font:                  "Termsyn 9";
@@ -14,30 +14,40 @@
     anchor:     north;
     location:   north;
     width:      100%;
-    padding:    6px;
-    height:     30px;
+    height:     25px;
     children:   [ horibox ];
 }
 
 #horibox {
+    padding:     5px;
+    height:      30px;
     orientation: horizontal;
-    children:   [ prompt, entry, listview ];
+    children:   [ prompt, textbox-prompt-colon, entry, listview ];
+}
+
+#textbox-prompt-colon  {
+  expand: false;
+  str: "# ";
+  text-color: #f2b705;
 }
 
 #listview {
     layout:     horizontal;
-    spacing:    3px;
+    spacing:    5px;
     lines:      100;
 }
 
 #entry {
     expand:     false;
     width:      3em;
+    height:     25px;
 }
 
 #element {
-    padding: 0px 2px;
+    height: 25px;
 }
 #element selected {
-    background-color: #8A7A63;
+    height: 25px;
+    background-color: #e8dfd6;
+    text-color: #0d0d0d;
 }
