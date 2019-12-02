@@ -2,7 +2,7 @@
 ; [polybar] config
 ;
 ; created: 20180731
-; updated: 20190322
+; updated: 20191202
 ; Stanislaw Grams <sjg@fmdx.pl>
 ;
 
@@ -11,18 +11,18 @@
 ;;
 
 [colors]
-background       = #66303B3F
-foreground       = #cecfd1
-foreground-alert = #f20c45
+background       = #b00d0d0d
+foreground       = #d9d9d9
+foreground-alert = #f2a007
 
 black      = #000000
 white      = #ffffff
 
-red        = #c70039
-green      = #a0ff70
-blue       = #46AFE8
+red        = #bf3604
+green      = #5abf56
+blue       = #064373
 
-yellow     = #ffc300
+yellow     = #EBE990
 
 gray       = #444444
 gray-light = #a0a0a0
@@ -37,7 +37,7 @@ accent     = ${colors.green}
 ;;
 [bar/top]
 width = 100%
-height = 30
+height = 25
 radius = 0.0
 fixed-center = true
 
@@ -47,7 +47,7 @@ offset-y = 1%
 wm-name = i3
 locale = pl_PL.UTF-8
 enable-ipc = true
-monitor = eDP1
+;;monitor = eDP1
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -64,19 +64,19 @@ padding-right = 10
 module-margin-left = 2
 module-margin-right = 2
 
-font-0 = "Noto Sans:size=10:antialias=true;1"
+font-0 = "Termsyn:size=9:antialias=true;1"
 font-1 = "FontAwesome:size=10;2.5"
 
 modules-left = i3
 modules-center = xwindow
-modules-right = imgwmon aqi todo system-uptime-pretty volume filesystem wlan eth date battery-combined-shell powermenu
+modules-right = tor zeronet imgwmon aqi todo system-uptime-pretty volume filesystem wlan eth keyboard date battery-combined-shell powermenu
 
 tray-position = right
 tray-padding = 0
 tray-background = ${colors.background}
 tray-detached = false
 tray-maxsize = 12
-tray-offset-y = -1
+tray-offset-y = -10
 
 wm-restack = i3
 override-redirect = false
@@ -99,7 +99,7 @@ strip-wsnumbers = false
 
 label-focused = %icon%
 label-focused-foreground = ${colors.navy}
-label-focused-background = ${colors.gray-light}
+label-focused-background = ${colors.foreground}
 label-focused-padding = 1
 
 label-unfocused = %icon%
@@ -182,10 +182,7 @@ format-connected-prefix-foreground = ${colors.green}
 
 label-connected = %essid%%downspeed:9% %local_ip%
 
-format-connected-underline = ${colors.red}
-
 format-disconnected = 
-
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
@@ -290,6 +287,26 @@ exec-if       = pgrep -x openvpn
 interval      = 5
 format-prefix = " "
 format-prefix-foreground = ${colors.green}
+
+;;
+;; tor module
+;;
+[module/tor]
+type          = custom/script
+exec          = echo -ne "tor up"
+exec-if       = pgrep -x tor
+interval      = 5
+format-foreground = ${colors.green}
+
+;;
+;; zeronet module
+;;
+[module/zeronet]
+type          = custom/script
+exec          = echo -ne "zeronet up"
+exec-if       = pgrep -f zeronet
+interval      = 5
+format-foreground = ${colors.green}
 
 ;;
 ;; imgwmon module
