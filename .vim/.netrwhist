@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/sjg/git/papaj/server'
-let g:netrw_dirhist_2='/home/sjg/git/papaj'
-let g:netrw_dirhist_3='/home/sjg/git/rspecking/08-filetest/spec'
-let g:netrw_dirhist_4='/home/sjg/git/rspecking/08-filetest/lib'
