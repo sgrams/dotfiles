@@ -28,11 +28,13 @@ set wrap
 set modeline
 set expandtab
 set invnumber
+set encoding=utf-8
+set mouse=nv " toggle mouse ON by default
 syn on
 
 " user-defined mapping
 map <F7> gg=G<C-o><C-o>
-:nmap <F9> :set invnumber<CR>
+nmap <F9> :set invnumber<CR>
 
 ""
 "" vimplug
@@ -77,9 +79,6 @@ let g:better_whitespace_ctermcolor='red'
 
 " ycm
 let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/youcompleteme/.ycm_extra_conf.py'
-
-" pathogen
-execute pathogen#infect()
 
 " syntastic
 set statusline+=%#warningmsg#
