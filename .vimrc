@@ -1,16 +1,13 @@
 " ~/.vimrc
-" © Stanisław Grams <sjg@fmdx.pl>
-"
+" Stanisław Grams <sjg@fmdx.pl>
 " created:      2016-10-19
-" last update:  2020-03-03
+" last update:  2020-04-29
 
 ""
 "" general
 ""
 filetype plugin on
 filetype indent on
-
-colorscheme torte
 
 set ai
 set si
@@ -40,21 +37,32 @@ nmap <F9> :set invnumber<CR>
 "" vimplug
 ""
 call plug#begin('~/.vim/plugged')
-Plug 'vim-airline/vim-airline'
-Plug 'townk/vim-autoclose'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'scrooloose/nerdtree'
-Plug 'craigemery/vim-autotag'
-Plug 'mileszs/ack.vim'
-Plug 'tpope/vim-endwise'
-Plug 'valloric/youcompleteme'
-Plug 'majutsushi/tagbar'
-Plug 'ntpeters/vim-better-whitespace'
+"" mouse support
 Plug 'nvie/vim-togglemouse'
+
+"" file handling
+Plug 'scrooloose/nerdtree'
+Plug 'mileszs/ack.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+
+"" syntax checkers and helpers
+Plug 'valloric/youcompleteme'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-endwise'
+Plug 'townk/vim-autoclose'
+Plug 'majutsushi/tagbar'
+
+"" code formatting
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'nathanaelkane/vim-indent-guides'
+
+"" git
 Plug 'gregsexton/gitv'
 Plug 'tpope/vim-fugitive'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/syntastic'
+
+"" themes
+Plug 'flazz/vim-colorschemes'
+Plug 'romainl/flattened'
 call plug#end()
 
 " nerdtree
@@ -95,3 +103,6 @@ set mouse=a
 
 " mutt
 au BufRead /tmp/mutt-* set tw=72 " 72 cols width for mails with mutt
+
+" colorscheme
+colorscheme flattown
