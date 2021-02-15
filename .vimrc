@@ -46,7 +46,6 @@ Plug 'mileszs/ack.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 
 "" syntax checkers and helpers
-Plug 'valloric/youcompleteme'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-endwise'
 Plug 'townk/vim-autoclose'
@@ -55,6 +54,7 @@ Plug 'majutsushi/tagbar'
 "" code formatting
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'thaerkh/vim-workspace'
 
 "" git
 Plug 'gregsexton/gitv'
@@ -63,6 +63,9 @@ Plug 'tpope/vim-fugitive'
 "" themes
 Plug 'flazz/vim-colorschemes'
 Plug 'romainl/flattened'
+
+"" uefi
+Plug 'sgrams/vim-efiguid'
 call plug#end()
 
 " nerdtree
@@ -84,9 +87,6 @@ let g:AutoClosePreserveDotReg = 0
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:better_whitespace_ctermcolor='red'
-
-" ycm
-let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/youcompleteme/.ycm_extra_conf.py'
 
 " syntastic
 set statusline+=%#warningmsg#
