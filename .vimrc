@@ -1,7 +1,7 @@
 " ~/.vimrc
 " Stanisław Grams <sjg@fmdx.pl>
 " created:      2016-10-19
-" last update:  2020-04-29
+" last update:  2022-01-03
 
 ""
 "" general
@@ -46,15 +46,21 @@ Plug 'mileszs/ack.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 
 "" syntax checkers and helpers
-Plug 'scrooloose/syntastic'
+""Plug 'valloric/youcompleteme'
 Plug 'tpope/vim-endwise'
 Plug 'townk/vim-autoclose'
+Plug 'majutsushi/tagbar'
+Plug 'yggdroot/indentline'
+Plug 'fedorov7/vim-uefi' " uefi support
+
+"" ctags
+Plug 'craigemery/vim-autotag'
 Plug 'majutsushi/tagbar'
 
 "" code formatting
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'thaerkh/vim-workspace'
+Plug 'tpope/vim-commentary'
 
 "" git
 Plug 'gregsexton/gitv'
@@ -63,9 +69,10 @@ Plug 'tpope/vim-fugitive'
 "" themes
 Plug 'flazz/vim-colorschemes'
 Plug 'romainl/flattened'
+Plug 'NLKNguyen/papercolor-theme'
 
-"" uefi
-Plug 'sgrams/vim-efiguid'
+"" utils
+Plug 'kburdett/vim-nuuid'
 call plug#end()
 
 " nerdtree
@@ -81,22 +88,16 @@ endif
 
 " tagbar
 nmap <F8> :TagbarToggle<CR>
-let g:AutoClosePreserveDotReg = 0
+let g:AutoClosePreserveDotReg=0
 
 " betterwhitespace
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:better_whitespace_ctermcolor='red'
 
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+" ycm
+"let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/youcompleteme/.ycm_extra_conf.py'
+"let g:ycm_collect_identifiers_from_tags_files = 1
 
 " mouse
 set mouse=a
@@ -105,4 +106,10 @@ set mouse=a
 au BufRead /tmp/mutt-* set tw=72 " 72 cols width for mails with mutt
 
 " colorscheme
-colorscheme flattown
+set background=dark
+colorscheme PaperColor
+
+" ctags
+nnoremap <leader>. :CtrlPTag<cr>
+let g:autotagTagsFile="tags"
+map <C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
