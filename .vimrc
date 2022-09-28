@@ -1,7 +1,7 @@
 " ~/.vimrc
 " Stanisław Grams <sjg@fmdx.pl>
 " created:      2016-10-19
-" last update:  2022-01-03
+" last update:  2022-09-27
 
 ""
 "" general
@@ -51,20 +51,26 @@ Plug 'tpope/vim-endwise'
 Plug 'townk/vim-autoclose'
 Plug 'majutsushi/tagbar'
 Plug 'yggdroot/indentline'
-Plug 'fedorov7/vim-uefi' " uefi support
+Plug 'aphroteus/vim-uefi' " uefi support
 
 "" ctags
 Plug 'craigemery/vim-autotag'
 Plug 'majutsushi/tagbar'
+"Plug 'xolox/vim-easytags'
+"Plug 'xolox/vim-misc'
 
 "" code formatting
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-commentary'
+Plug 'godlygeek/tabular'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 "" git
 Plug 'gregsexton/gitv'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 "" themes
 Plug 'flazz/vim-colorschemes'
@@ -73,7 +79,22 @@ Plug 'NLKNguyen/papercolor-theme'
 
 "" utils
 Plug 'kburdett/vim-nuuid'
+
+"" diffs
+Plug 'AndrewRadev/linediff.vim'
+Plug 'AndrewRadev/diffurcate.vim'
+
+if has('nvim') || has('patch-8.0.902')
+  Plug 'mhinz/vim-signify'
+else
+  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+endif
+
 call plug#end()
+
+" vim-signify
+" default updatetime 4000ms is not good for async update
+set updatetime=100
 
 " nerdtree
 autocmd StdinReadPre * let s:std_in=1
@@ -107,9 +128,51 @@ au BufRead /tmp/mutt-* set tw=72 " 72 cols width for mails with mutt
 
 " colorscheme
 set background=dark
-colorscheme PaperColor
+colorscheme Tomorrow-Night-Bright
 
 " ctags
 nnoremap <leader>. :CtrlPTag<cr>
 let g:autotagTagsFile="tags"
+set tags=./.tags,.tags,./.TAGS,.TAGS,./tags,tags,./TAGS,TAGS
 map <C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" Tabularize
+if exists (":Tabularize")
+  " variable definition block alignment
+  xnoremap <Leader>ar :Tabularize /^\s*\S\+\zs/l0c1l0<CR>
+endif
+
+" vim diff side by side
+function! Vimdiff()
+    let lines = getline(0, '$')
+    let la = []
+    let lb = []
+    for line in lines
+        if line[0] == '-'
+            call add(la, line[1:])
+        elseif line[0] == '+'
+            call add(lb, line[1:])
+        else
+            call add(la, line)
+            call add(lb, line)
+        endif
+    endfor
+    tabnew
+    set bt=nofile
+    vertical new
+    set bt=nofile
+    call append(0, la)
+    diffthis
+    exe "normal \<C-W>l"
+    call append(0, lb)
+    diffthis
+endfunction
+autocmd FileType diff nnoremap <silent> <leader>vd :call Vimdiff()<CR>
+
+"" noremaps
+nnoremap <leader>du :%s/\r//g<CR>
+
+nnoremap <leader>tc :tabnew<CR>
+nnoremap <leader>td :tabclose<CR>
+nnoremap <leader>tp :tabprevious<CR>
+nnoremap <leader>tn :tabnext<CR>
