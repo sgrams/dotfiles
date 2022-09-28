@@ -109,4 +109,14 @@ export GPG_TTY=$(tty)
 export PATH=$PATH:$HOME/.local/bin
 export EDITOR=nvim
 export TERM=xterm-256color
+autoload -U compinit
+autoload -U bashcompinit
+autoload -U colors
+colors
+compinit -u
+bashcompinit
+set appendhistory
 
+
+# Add EdkRepo command completions
+[[ -r "/etc/profile.d/edkrepo_completions.sh" ]] && . "/etc/profile.d/edkrepo_completions.sh"
