@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="cypher"
+ZSH_THEME="half-life"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -102,6 +102,8 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # aliases
 alias vi="vim"
 alias vim="nvim"
+
+alias stitch_actm="python /srv/share/tools/AcmReplacer/acmreplacer.py -g '9844E666-A856-4022-BAB4-7E6CFE7BDED0'"
 
 # exports
 export LC_ALL=en_US.UTF-8

@@ -1,7 +1,7 @@
 " ~/.vimrc
 " Stanisław Grams <sjg@fmdx.pl>
 " created:      2016-10-19
-" last update:  2022-09-27
+" last update:  2024-04-08
 
 ""
 "" general
@@ -65,7 +65,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-commentary'
 Plug 'godlygeek/tabular'
 Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
+"Plug 'vim-pandoc/vim-pandoc-syntax'
 
 "" git
 Plug 'gregsexton/gitv'
@@ -128,7 +128,9 @@ au BufRead /tmp/mutt-* set tw=72 " 72 cols width for mails with mutt
 
 " colorscheme
 set background=dark
-colorscheme Tomorrow-Night-Bright
+"colorscheme Tomorrow-Night-Bright
+"colorscheme Dev_Delight
+colorscheme Tomorrow-Night-Eighties
 
 " ctags
 nnoremap <leader>. :CtrlPTag<cr>
@@ -143,7 +145,7 @@ if exists (":Tabularize")
 endif
 
 " vim diff side by side
-function! Vimdiff()
+function Vimdiff()
     let lines = getline(0, '$')
     let la = []
     let lb = []
@@ -170,9 +172,30 @@ endfunction
 autocmd FileType diff nnoremap <silent> <leader>vd :call Vimdiff()<CR>
 
 "" noremaps
+nnoremap <leader>vd :call Vimdiff()<CR>
 nnoremap <leader>du :%s/\r//g<CR>
 
 nnoremap <leader>tc :tabnew<CR>
 nnoremap <leader>td :tabclose<CR>
 nnoremap <leader>tp :tabprevious<CR>
 nnoremap <leader>tn :tabnext<CR>
+
+"" commit quickfix list
+function! CommitQF(...)
+    " Get the commit hash if it was specified
+    let commit = a:0 == 0 ? '' : a:1
+
+    " Get the result of git show in a list
+    let flist = system('git show --name-only ' . commit . ' | tail -n +7')
+    let flist = split(flist, '\n')
+
+    " Create the dictionnaries used to populate the quickfix list
+    let list = []
+    for f in flist
+        let dic = {'filename': f, "lnum": 1}
+        call add(list, dic)
+    endfor
+
+    " Populate the qf list
+    call setqflist(list)
+endfunction
