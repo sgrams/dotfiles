@@ -1,7 +1,7 @@
 " ~/.vimrc
-" Stanislaw Grams <stanislawgrams@gmail.com>
+" Stan Grams <stanislawgrams@gmail.com>
 " created:      2016-10-19
-" last update:  2025-05-28
+" last update:  2026-02-16
 
 ""
 "" general
@@ -53,19 +53,19 @@ Plug 'majutsushi/tagbar'
 Plug 'yggdroot/indentline'
 Plug 'aphroteus/vim-uefi' " uefi support
 
-"" syntax autocomplete
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 "" ctags
 Plug 'craigemery/vim-autotag'
 Plug 'majutsushi/tagbar'
+"Plug 'xolox/vim-easytags'
+"Plug 'xolox/vim-misc'
 
 "" code formatting
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-commentary'
 Plug 'godlygeek/tabular'
-Plug 'dense-analysis/ale'
+Plug 'rust-lang/rust.vim'
+Plug 'powerman/vim-plugin-ansiesc'
 
 "" git
 Plug 'gregsexton/gitv'
@@ -127,11 +127,10 @@ set mouse=a
 au BufRead /tmp/mutt-* set tw=72 " 72 cols width for mails with mutt
 
 " colorscheme
-" set background=dark
+set background=dark
 "colorscheme Tomorrow-Night-Bright
 "colorscheme Dev_Delight
-"colorscheme Tomorrow-Night-Eighties
-colorscheme Atelier_LakesideDark
+colorscheme Tomorrow-Night-Eighties
 
 " ctags
 nnoremap <leader>. :CtrlPTag<cr>
@@ -200,6 +199,3 @@ function! CommitQF(...)
     " Populate the qf list
     call setqflist(list)
 endfunction
-
-"" ale
-let g:ale_disable_lsp = 'auto'
