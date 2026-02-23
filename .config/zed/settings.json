@@ -1,0 +1,38 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "session": {
+    "trust_all_worktrees": false
+  },
+  "vim_mode": true,
+  "base_keymap": "VSCode",
+  "icon_theme": "Zed (Default)",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "format_on_save": "on",
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "check": {
+          "command": "clippy"
+        }
+      }
+    }
+  },
+  "theme": {
+    "mode": "dark",
+    "light": "Nord Light",
+    "dark": "Nord",
+  },
+}
