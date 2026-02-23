@@ -21,6 +21,9 @@
     }
   },
   "format_on_save": "on",
+  "inlay_hints": {
+    "enabled": true
+  },
   "lsp": {
     "rust-analyzer": {
       "initialization_options": {
