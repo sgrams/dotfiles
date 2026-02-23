@@ -76,6 +76,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'flazz/vim-colorschemes'
 Plug 'romainl/flattened'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'arcticicestudio/nord-vim'
 
 "" utils
 Plug 'kburdett/vim-nuuid'
@@ -128,9 +129,13 @@ au BufRead /tmp/mutt-* set tw=72 " 72 cols width for mails with mutt
 
 " colorscheme
 set background=dark
+if has('termguicolors')
+  set termguicolors
+endif
 "colorscheme Tomorrow-Night-Bright
 "colorscheme Dev_Delight
-colorscheme Tomorrow-Night-Eighties
+"colorscheme Tomorrow-Night-Eighties
+colorscheme nord
 
 " ctags
 nnoremap <leader>. :CtrlPTag<cr>
