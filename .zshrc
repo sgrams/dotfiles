@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="clean"
+ZSH_THEME=""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -73,6 +73,24 @@ ZSH_THEME="clean"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+
+# -- Nord prompt ---------------------------------------------------------------
+# Polar Night / Snow Storm / Frost / Aurora
+_np_host="%F{#88C0D0}"   # nord8  frost blue   — hostname
+_np_dir="%F{#D8DEE9}"    # nord4  snow storm   — directory
+_np_git="%F{#EBCB8B}"    # nord13 aurora yellow — git branch
+_np_ok="%F{#A3BE8C}"     # nord14 aurora green  — prompt ok
+_np_err="%F{#BF616A}"    # nord11 aurora red    — prompt error
+_np_dim="%F{#D8DEE9}"    # nord4  snow storm    — separator
+_np_rst="%f"
+
+ZSH_THEME_GIT_PROMPT_PREFIX="${_np_git}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="${_np_rst} "
+ZSH_THEME_GIT_PROMPT_DIRTY="*"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+
+PROMPT='${_np_host}%m${_np_rst} ${_np_dim}::${_np_rst} ${_np_dir}%~${_np_rst} $(git_prompt_info)%(?.${_np_ok}.${_np_err})❯${_np_rst} '
+# ------------------------------------------------------------------------------
 
 # User configuration
 
