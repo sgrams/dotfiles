@@ -1,13 +1,16 @@
 # tmux configuration
 
-Consolidated tmux configuration based on [Oh my tmux!](https://github.com/gpakosz/.tmux) by Gregory Pakosz.
+Forked from [Oh my tmux!](https://github.com/gpakosz/.tmux) by Gregory Pakosz.
+Dual licensed under WTFPL v2 and MIT — see `LICENSE.WTFPLv2` and `LICENSE.MIT`.
 
 ## Files
 
 | File | Description |
 |------|-------------|
-| `tmux.conf` | Oh my tmux! framework (upstream base config — do not modify) |
+| `tmux.conf` | Oh my tmux! framework (forked base config) |
 | `tmux.conf.local` | User customizations (theme, bindings, options) |
+| `LICENSE.MIT` | MIT license (upstream) |
+| `LICENSE.WTFPLv2` | WTFPL v2 license (upstream) |
 
 ## Highlights
 
