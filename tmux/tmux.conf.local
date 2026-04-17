@@ -398,16 +398,14 @@ set -g mouse on
 set -g status-keys vi
 set -g mode-keys vi
 
-# Clear all prefixes first
+# Prefix: C-a on host, C-b on remotes (detected via SSH_TTY)
 unbind C-b
 set -gu prefix2
 unbind C-a
 
-# Set new prefix
-set -g prefix C-a
-
-# Send Ctrl-a to apps by pressing it twice
-bind C-a send-prefix
+if-shell '[ -z "$SSH_TTY" ]' \
+  'set -g prefix C-a; bind C-a send-prefix' \
+  'set -g prefix C-b; bind C-b send-prefix'
 
 # if you don't want Oh my tmux! to alter a binding or a setting, use #!important
 # bind c new-window -c '#{pane_current_path}' #!important
