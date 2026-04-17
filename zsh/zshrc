@@ -75,13 +75,13 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # -- Nord prompt ---------------------------------------------------------------
-# Polar Night / Snow Storm / Frost / Aurora
-_np_host="%F{#88C0D0}"   # nord8  frost blue   — hostname
-_np_dir="%F{#D8DEE9}"    # nord4  snow storm   — directory
-_np_git="%F{#EBCB8B}"    # nord13 aurora yellow — git branch
-_np_ok="%F{#A3BE8C}"     # nord14 aurora green  — prompt ok
-_np_err="%F{#BF616A}"    # nord11 aurora red    — prompt error
-_np_dim="%F{#D8DEE9}"    # nord4  snow storm    — separator
+# 256-color approximations of Nord palette (compatible with Windows Terminal)
+_np_host="%F{110}"   # nord8  frost blue   — hostname
+_np_dir="%F{188}"    # nord4  snow storm   — directory
+_np_git="%F{222}"    # nord13 aurora yellow — git branch
+_np_ok="%F{144}"     # nord14 aurora green  — prompt ok
+_np_err="%F{131}"    # nord11 aurora red    — prompt error
+_np_dim="%F{188}"    # nord4  snow storm    — separator
 _np_rst="%f"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="${_np_git}"
