@@ -42,8 +42,8 @@ usage() {
 }
 
 prompt_menu() {
-  echo "dotfiles setup"
-  echo "=============="
+  echo "sgrams' dotfiles setup"
+  echo "======================"
   echo ""
   echo "Available components:"
   for i in "${!COMPONENTS[@]}"; do
