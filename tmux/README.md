@@ -12,7 +12,7 @@ Consolidated tmux configuration based on [Oh my tmux!](https://github.com/gpakos
 ## Highlights
 
 - **Theme:** Nord (Polar Night / Snow Storm / Frost / Aurora palette)
-- **Prefix:** `C-a` (GNU Screen-compatible)
+- **Prefix:** `C-a` on host, `C-b` on remotes (auto-detected via `SSH_TTY`)
 - **Mouse:** enabled
 - **Mode keys:** vi
 - **History limit:** 10000
