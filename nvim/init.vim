@@ -54,6 +54,10 @@ Plug 'godlygeek/tabular'
 Plug 'rust-lang/rust.vim'
 Plug 'powerman/vim-plugin-ansiesc'
 
+"" Copilot chat
+Plug 'nvim-lua/plenary.nvim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim'
+
 "" git
 Plug 'gregsexton/gitv'
 Plug 'tpope/vim-fugitive'
@@ -162,3 +166,8 @@ function! CommitQF(...)
     endfor
     call setqflist(list)
 endfunction
+
+"" configure Copilot chat
+lua << EOF
+require("CopilotChat").setup()
+EOF
